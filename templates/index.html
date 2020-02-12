@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>text checker</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+<body>
+  <form action='https://flask-ml-api.herokuapp.com/show-data' method="post" name="myForm">
+    <p>
+    Input the text here. 
+      <input type="text" id="text_to_get_predicted" rows="5" size="40">
+    </p>
+   
+    <p>
+      <input type="submit" value="送信">
+      <input type="reset"  value="リセット">
+    </p>
+  </form>
+
+
+<script>
+const url = 'https://flask-ml-api.herokuapp.com/post';
+
+
+var data = {'text_to_get_predicted':'dog'};
+$.ajax({
+  url: url,
+  type: 'POST',
+  contentType:'application/json',
+  data: JSON.stringify(data),
+  dataType:'json',
+  success: function(data){
+    //On ajax success do this
+    alert(data);
+     },
+  error: function(xhr, ajaxOptions, thrownError) {
+     //On error do this
+       if (xhr.status == 200) {
+
+           alert(ajaxOptions);
+       }
+       else {
+           alert(xhr.status);
+           alert(thrownError);
+       }
+   }
+});
+
+</script>
+
+
+</body>
+</html>
