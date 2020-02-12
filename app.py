@@ -63,7 +63,7 @@ def post_json():
         
         json = [
           {"Category": category},
-          {"Confident": probability}
+          {"Confidence": probability}
           ]
 
         return jsonify(json)
