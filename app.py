@@ -11,7 +11,7 @@ from gensim.models._fasttext_bin import load
 
 import os, io, time, re
 
-MODEL_FILE_PATH = 'model_corona_002auto.bin'
+MODEL_FILE_PATH = 'model_corona_002auto.ftz'
 
 def text_wakati(text):
     # リクエストで送られてきたテキストデータを分かち書きする前処理
@@ -26,11 +26,11 @@ app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False  # 日本語文字ばけ防止
 
 # <--プログラム-->
-@app.route('/') # /　というURLにアクセスされた時の処理を記述
-def index():
-    return 'Hello World!'
+# @app.route('/') # /　というURLにアクセスされた時の処理を記述
+# def index():
+#     return 'Hello World!'
 
-@app.route('/post', methods=["GET", "POST"])
+@app.route('/', methods=["GET", "POST"])
 def post_json():
     if  request.method == "GET":
         return render_template('test_ajax.html')
@@ -63,7 +63,7 @@ def post_json():
         
         json = [
           {"Category": category},
-          {"Probability": probability}
+          {"Confident": probability}
           ]
 
         return jsonify(json)
