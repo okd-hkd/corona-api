@@ -40,7 +40,7 @@ def post_json():
         target_text = response["text_to_get_predicted"] 
         target_text = text_wakati(target_text)  
 
-
+        
         # load model
         model = fasttext.load_model(MODEL_FILE_PATH)
 
